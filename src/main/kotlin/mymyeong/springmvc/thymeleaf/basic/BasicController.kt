@@ -59,11 +59,63 @@ class BasicController {
         return "basic/link"
     }
 
-    @Component("helloBean")
-    class HelloBean {
-        fun hello(data: String): String {
-            return "hello $data"
-        }
+    @GetMapping("literal")
+    fun literal(model: Model): String {
+        model.addAttribute("data", "Spring")
+        return "basic/literal"
+    }
+
+    @GetMapping("operation")
+    fun operation(model: Model): String {
+        model.addAttribute("nullData", null)
+        model.addAttribute("data", "spring")
+        return "basic/operation"
+    }
+
+    @GetMapping("attribute")
+    fun attribute(model: Model): String {
+        return "basic/attribute"
+    }
+
+    @GetMapping("each")
+    fun each(model: Model): String {
+        addUsers(model)
+        return "basic/each"
+    }
+
+    @GetMapping("condition")
+    fun condition(model: Model): String {
+        addUsers(model)
+        return "basic/condition"
+    }
+
+    @GetMapping("comments")
+    fun comments(model: Model): String {
+        model.addAttribute("data", "spring")
+        return "basic/comments"
+    }
+
+    @GetMapping("block")
+    fun block(model: Model): String {
+        addUsers(model)
+        return "basic/block"
+    }
+
+    @GetMapping("javascript")
+    fun javascript(model: Model): String {
+        model.addAttribute("user", User("UserA", 10))
+        addUsers(model)
+        return "basic/javascript"
+    }
+
+    fun addUsers(model: Model) {
+        model.addAttribute(
+            "users", listOf(
+                User("userA", 10),
+                User("userB", 20),
+                User("userC", 30)
+            )
+        )
     }
 
     data class User(
