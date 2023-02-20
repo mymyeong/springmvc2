@@ -13,4 +13,14 @@ class TemplateController {
     fun template(model: Model): String {
         return "template/fragment/fragmentMain"
     }
+
+    @GetMapping("layout")
+    fun layout(model: Model): String {
+        return "template/layout/layoutMain"
+    }
+
+    @GetMapping("layoutExtend")
+    fun layoutExtend(model: Model): String {
+        return "template/layoutExtend/layoutExtendMain"
+    }
 }
